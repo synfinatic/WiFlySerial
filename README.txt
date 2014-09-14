@@ -12,7 +12,7 @@ Other trademarks referenced are the property of their respective owners.
 ============
 LICENSE
 ============
-
+(C) 2014 Aaron Turner
 (C) 2011, 2012 Tom Waldock
 
    Permission is hereby granted, free of charge, to any person
@@ -59,6 +59,7 @@ WFSv3 is a proof-of-concept demo of Client/Server libraries based on the Arduino
 SUPPORT
 =======
 
+Aaron's branch: https://github.com/synfinatic/WiFlySerial
 Current code and support forums are available from http://arduinowifly.sourceforge.net.
 Additional commentary on http://arduinology.blogspot.com and http://arduinology.tumblr.com
 
@@ -66,7 +67,10 @@ Additional commentary on http://arduinology.blogspot.com and http://arduinology.
 =======
 HISTORY
 =======
+*** 2014-Sep-15 1.09 Use AnySerial rather then relying on SoftwareSerial for talking to the WiFly
+
 *** 2012-May-05 1.08 Minor fix to setRemotePort();
+
 *** 2012-Apr-22 1.07 Time sync handling improvements and Client/Server library compilation issue resolved.
 
 *** 2012-Apr-14 1.06 Clean closing and faster data->command mode switching.
