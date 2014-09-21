@@ -54,6 +54,7 @@ Copyright GPL 2.1 Tom Waldock 2011, 2012
 
 #include "WiFlySerial.h"
 
+
 // Strings stored in Program space
 prog_char s_WIFLYDEVICE_LIBRARY_VERSION[] PROGMEM = "WiFlySerial v1.09" ;   
 prog_char s_WIFLYDEVICE_JOIN[] PROGMEM = "join " ;   
@@ -342,10 +343,6 @@ WiFlySerial::WiFlySerial(AnySerial &port) : uart(port) {
     // ensure a default sink.
     pDebugChannel = NULL;
     pControl = WiFlyFixedPrompts[WIFLY_MSG_CLOSE];
-    // set default uart transmission speed to same as WiFly default speed.
-    uart.begin(WIFLY_DEFAULT_BAUD_RATE);
-    uart.listen();
-    uart.flush();
 
 }
 
@@ -359,6 +356,12 @@ boolean WiFlySerial::begin() {
     char szCmd[SMALL_COMMAND_BUFFER_SIZE];
     char szResponse[COMMAND_BUFFER_SIZE];
     //  char szIndicator[INDICATOR_BUFFER_SIZE];  
+
+    // set default uart transmission speed to same as WiFly default speed.
+    uart.begin(WIFLY_DEFAULT_BAUD_RATE);
+    uart.listen();
+    uart.flush();
+    delay(500);
 
     //Device may or may not be:
     // awake / asleep
@@ -542,7 +545,7 @@ boolean WiFlySerial::StartCommandMode(char* pBuffer, const int bufSize) {
             uart.flush();
             // Send $$$ , wait a moment, look for CMD
             delay(COMMAND_MODE_GUARD_TIME );
-            uart <<  GetBuffer_P(STI_WIFLYDEVICE_ATTN, responseBuffer, bufSize) ;
+	    uart << GetBuffer_P(STI_WIFLYDEVICE_ATTN, responseBuffer, bufSize) ;
             uart.flush();
             delay(COMMAND_MODE_GUARD_TIME  );
             if (nTries >= 2)  {
@@ -656,7 +659,6 @@ boolean WiFlySerial::SendCommand( char *pCmd,  char *SuccessIndicator, char* pRe
         const boolean bCollecting, const  unsigned long iWaitTime, const boolean bClear, const boolean bPromptAfterResult) {
 
     boolean bCommandOK = false;
-    char ch;
     int iResponse = 0;
     int iTry = 0;
 
@@ -669,10 +671,8 @@ boolean WiFlySerial::SendCommand( char *pCmd,  char *SuccessIndicator, char* pRe
     // clear out leftover characters coming in
 
     if ( bClear ) {
-        // DebugPrint("Clearing:"); 
         while ( available() ) {
-            ch = (char) read();
-            // DebugPrint( ch);
+            read();
         } 
     } 
 
@@ -1169,7 +1169,7 @@ boolean WiFlySerial::isTCPConnected() {
     }
 
 
-    return ( fStatus &  0x01 > 0 ? true : false);
+    return ((fStatus &  0x01) > 0 ? true : false);
 
 }
 
@@ -1369,7 +1369,6 @@ char* WiFlySerial::ExtractDetailIdx(const int idxCommand, char* pDetail, int buf
 // Returns:       pointer to destination buffer
 char* WiFlySerial::ExtractDetail(char* pCommand, char* pDetail, int buflen, const char* pFrom, const char* pTo) {
     char* pEndToken = NULL;
-    char ch;
 
     //send command and ignore results up to after pFrom
     SendCommand(pCommand,  
@@ -1388,11 +1387,6 @@ char* WiFlySerial::ExtractDetail(char* pCommand, char* pDetail, int buflen, cons
 
     // clear buffer of remaining characters
     ScanForPattern(strchr(pDetail,'\0')+1, buflen - strlen(pDetail) -1 , "\0\0", false,  DEFAULT_WAIT_TIME  );                           
-    //   while ( uart.available() > 0 ) {
-    //     ch = uart.read();
-    //     DebugPrint(ch);
-    //   }
-    //
 
     return pDetail;
 }
@@ -1728,12 +1722,9 @@ boolean WiFlySerial::join(char* pSSID) {
 // Returns pointer to a supplied Buffer, from PROGMEM based on StringIndex provided.
 // based on example from http://arduino.cc/en/Reference/PROGMEM
 char* WiFlySerial::GetBuffer_P(const int StringIndex, char* pBuffer, int bufSize) {
-
     memset(pBuffer, '\0', bufSize);
-    strncpy_P(pBuffer, (char*)pgm_read_word(&(WiFlyDevice_string_table[StringIndex])), bufSize);
-
+    strncpy_P(pBuffer, (char *)PGM_READ_WORD(&(WiFlyDevice_string_table[StringIndex])), bufSize);
     return pBuffer; 
-
 }
 
 int WiFlySerial::peek() {

@@ -56,12 +56,16 @@ Copyright GPL 2.0 Tom Waldock 2011
 */
 
 
-#include "../AnySerial/AnySerial.h"
+#include <Arduino.h>
+#include <AnySerial.h>
 #include <Streaming.h>
-#include <avr/pgmspace.h>
 
-#define ARDUINO_RX_PIN  2
-#define ARDUINO_TX_PIN  3
+// Teensy3.1 or Teensy3.0 MCU's
+#if defined __MK20DX256__ or __MK20DX128__
+#define PGM_READ_WORD(x) pgm_read_dword(x)
+#else
+#define PGM_READ_WORD(x) pgm_read_word(x)
+#endif
 
 
 #define COMMAND_BUFFER_SIZE 64
