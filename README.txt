@@ -1,6 +1,25 @@
 WiFly Driver for the Arduino platform
-Provides WiFi wireless communications for Arduino-based systems.
-Arduino 1.0 platform
+Provides WiFi wireless communications for Arduino & Teensy based systems
+using the AnySerial library: http://github.com/synfinatic/AnySerial
+
+Supports the Arduino 1.05 platform
+
+============
+Usage
+============
+
+// Connect WiFly via Serial2
+AnySerial WiFlySerialPort(&Serial2);
+WiFlySerial WiFly(WiFlySerialPort);
+
+setup() {
+    // Initialize WiFly object
+    WiFly.begin();
+}
+
+loop() {
+    // do something with WiFly object
+}
 
 ============
 TRADEMARKS
