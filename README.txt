@@ -60,6 +60,7 @@ SUPPORT
 =======
 
 Aaron's branch: https://github.com/synfinatic/WiFlySerial
+
 Current code and support forums are available from http://arduinowifly.sourceforge.net.
 Additional commentary on http://arduinology.blogspot.com and http://arduinology.tumblr.com
 
@@ -67,6 +68,8 @@ Additional commentary on http://arduinology.blogspot.com and http://arduinology.
 =======
 HISTORY
 =======
+*** 2014-Sep-21 1.10 Add support for Teensy3.0/3.1
+
 *** 2014-Sep-15 1.09 Use AnySerial rather then relying on SoftwareSerial for talking to the WiFly
 
 *** 2012-May-05 1.08 Minor fix to setRemotePort();

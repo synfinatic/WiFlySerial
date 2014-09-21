@@ -5,8 +5,8 @@
    4-wires needed: Power, Gnd, Rx, Tx
 
    Provides moderately-generic WiFi device interface.
-   Compatible with Arduino 1.0 & Teensy 
-   Version 1.09
+   Compatible with Arduino 1.05 & Teensy 
+   Version 1.10
 
    - WiFlyGSX is a relatively intelligent peer.
    - WiFlyGSX may have awoken in a valid configured state while Arduino asleep; 
@@ -23,8 +23,6 @@
    Open a TCP connection to a peer
    send / receive data
    close connection
-
-   Serial is exposed as serial i/o
 
 Credits:
 WiFlySerial      Tom Waldock http://sourceforge.net/projects/arduinowifly/
@@ -56,64 +54,64 @@ Copyright GPL 2.1 Tom Waldock 2011, 2012
 
 
 // Strings stored in Program space
-prog_char s_WIFLYDEVICE_LIBRARY_VERSION[] PROGMEM = "WiFlySerial v1.09" ;   
-prog_char s_WIFLYDEVICE_JOIN[] PROGMEM = "join " ;   
-prog_char s_WIFLYDEVICE_OPEN[] PROGMEM = "open " ;   
-prog_char s_WIFLYDEVICE_CLOSE[] PROGMEM = "close" ;   
-prog_char s_WIFLYDEVICE_ASSOCIATED[] PROGMEM = "ssociated" ;   
-prog_char s_WIFLYDEVICE_ATTN[] PROGMEM = "$$$";   
-prog_char s_WIFLYDEVICE_VER[] PROGMEM = "ver" ;
-prog_char s_WIFLYDEVICE_LEAVE_CMD_MODE[] PROGMEM ="exit";
-prog_char s_WIFLYDEVICE_REBOOT[] PROGMEM ="reboot";
-prog_char s_WIFLYDEVICE_SAVE[] PROGMEM ="save";
-prog_char s_WIFLYDEVICE_GET_MAC[] PROGMEM =" get mac";
-prog_char s_WIFLYDEVICE_GET_MAC_ADDR[] PROGMEM ="Addr=";
-prog_char s_WIFLYDEVICE_GET_IP[] PROGMEM =" get ip";
-prog_char s_WIFLYDEVICE_GET_GW[] PROGMEM = " "; // "GW=";
-prog_char s_WIFLYDEVICE_GET_NM[] PROGMEM = " "; // "NM=";
-prog_char s_WIFLYDEVICE_LEAVE[] PROGMEM ="leave";
-prog_char s_WIFLYDEVICE_SET_SSID[] PROGMEM =" set wlan s ";
-prog_char s_WIFLYDEVICE_SET_CHANNEL[] PROGMEM =" set wlan c ";
-prog_char s_WIFLYDEVICE_SET_WIFI_AUTH[] PROGMEM =" set wlan a ";
-prog_char s_WIFLYDEVICE_SET_WIFI_JOIN[] PROGMEM =" set wlan j ";
-prog_char s_WIFLYDEVICE_SET_PASSPHRASE[] PROGMEM =" set w p ";
-prog_char s_WIFLYDEVICE_NETWORK_SCAN[] PROGMEM ="scan ";
-prog_char s_WIFLYDEVICE_AOK[] PROGMEM ="";
-prog_char s_WIFLYDEVICE_SET_UART_BAUD[] PROGMEM ="set u b 9600 ";
-prog_char s_WIFLYDEVICE_DEAUTH[] PROGMEM ="Deauth";
-prog_char s_WIFLYDEVICE_SET_NTP[] PROGMEM =" set time a ";
-prog_char s_WIFLYDEVICE_SET_NTP_ENABLE[] PROGMEM ="set time e ";
-prog_char s_WIFLYDEVICE_SET_DEVICEID[] PROGMEM ="set opt deviceid ";
-prog_char s_WIFLYDEVICE_IP_DETAILS[] PROGMEM ="get ip";
-prog_char s_WIFLYDEVICE_GET_DNS_DETAILS[] PROGMEM ="get dns";
-prog_char s_WIFLYDEVICE_GET_TIME[] PROGMEM ="show t t";
-prog_char s_WIFLYDEVICE_SET_DHCP[] PROGMEM ="set ip dhcp ";
-prog_char s_WIFLYDEVICE_SET_IP[] PROGMEM ="set ip a ";
-prog_char s_WIFLYDEVICE_SET_NETMASK[] PROGMEM ="set ip n ";
-prog_char s_WIFLYDEVICE_SET_GATEWAY[] PROGMEM ="set ip g ";
-prog_char s_WIFLYDEVICE_SET_DNS[] PROGMEM ="set dns addr ";
-prog_char s_WIFLYDEVICE_SET_LOCAL_PORT[] PROGMEM ="set ip local ";
-prog_char s_WIFLYDEVICE_SET_REMOTE_PORT[] PROGMEM ="set ip remote  ";
-prog_char s_WIFLYDEVICE_SET_PROTOCOL[] PROGMEM ="set ip proto ";
-prog_char s_WIFLYDEVICE_ERR_REBOOOT[] PROGMEM ="Attempting reboot";
-prog_char s_WIFLYDEVICE_ERR_START_FAIL[] PROGMEM ="Failed to get cmd prompt:Halted.";
-prog_char s_WIFLYDEVICE_SET_UART_MODE[] PROGMEM ="set u m 1 ";
-prog_char s_WIFLYDEVICE_GET_WLAN[] PROGMEM ="get wlan ";
-prog_char s_WIFLYDEVICE_GET_RSSI[] PROGMEM ="show rssi ";
-prog_char s_WIFLYDEVICE_GET_BATTERY[] PROGMEM ="show batt ";
-prog_char s_WIFLYDEVICE_GET_STATUS[] PROGMEM ="show conn ";
-prog_char s_WIFLYDEVICE_RETURN[] PROGMEM ="\r";
-prog_char s_WIFLYDEVICE_GET_IP_IND[] PROGMEM ="IP=";
-prog_char s_WIFLYDEVICE_GET_NM_IND[] PROGMEM ="NM=";
-prog_char s_WIFLYDEVICE_GET_GW_IND[] PROGMEM ="GW=";
-prog_char s_WIFLYDEVICE_GET_DNS_IND[] PROGMEM ="DNS=";
-prog_char s_WIFLYDEVICE_GET_WLAN_SSID_IND[] PROGMEM ="SSID=";
-prog_char s_WIFLYDEVICE_GET_RSSI_IND[] PROGMEM ="RSSI=";
-prog_char s_WIFLYDEVICE_GET_WLAN_DEV_IND[] PROGMEM ="DeviceID=";
-prog_char s_WIFLYDEVICE_GET_BATTERY_IND[] PROGMEM ="Batt=";
-prog_char s_WIFLYDEVICE_GET_TIME_IND[] PROGMEM ="RTC=";
-prog_char s_WIFLYDEVICE_GET_STATUS_IND[] PROGMEM ="8";
-prog_char s_WIFLYDEVICE_GET_IP_UP_IND[] PROGMEM ="F=";
+prog_char s_WIFLYDEVICE_LIBRARY_VERSION[] PROGMEM   = "WiFlySerial v1.10";
+prog_char s_WIFLYDEVICE_JOIN[] PROGMEM              = "join ";
+prog_char s_WIFLYDEVICE_OPEN[] PROGMEM              = "open ";
+prog_char s_WIFLYDEVICE_CLOSE[] PROGMEM             = "close";
+prog_char s_WIFLYDEVICE_ASSOCIATED[] PROGMEM        = "ssociated";
+prog_char s_WIFLYDEVICE_ATTN[] PROGMEM              = "$$$";
+prog_char s_WIFLYDEVICE_VER[] PROGMEM               = "ver";
+prog_char s_WIFLYDEVICE_LEAVE_CMD_MODE[] PROGMEM    = "exit";
+prog_char s_WIFLYDEVICE_REBOOT[] PROGMEM            = "reboot";
+prog_char s_WIFLYDEVICE_SAVE[] PROGMEM              = "save";
+prog_char s_WIFLYDEVICE_GET_MAC[] PROGMEM           = " get mac";
+prog_char s_WIFLYDEVICE_GET_MAC_ADDR[] PROGMEM      = "Addr=";
+prog_char s_WIFLYDEVICE_GET_IP[] PROGMEM            = " get ip";
+prog_char s_WIFLYDEVICE_GET_GW[] PROGMEM            = " "; // "GW = ";
+prog_char s_WIFLYDEVICE_GET_NM[] PROGMEM            = " "; // "NM = ";
+prog_char s_WIFLYDEVICE_LEAVE[] PROGMEM             = "leave";
+prog_char s_WIFLYDEVICE_SET_SSID[] PROGMEM          = " set wlan s ";
+prog_char s_WIFLYDEVICE_SET_CHANNEL[] PROGMEM       = " set wlan c ";
+prog_char s_WIFLYDEVICE_SET_WIFI_AUTH[] PROGMEM     = " set wlan a ";
+prog_char s_WIFLYDEVICE_SET_WIFI_JOIN[] PROGMEM     = " set wlan j ";
+prog_char s_WIFLYDEVICE_SET_PASSPHRASE[] PROGMEM    = " set w p ";
+prog_char s_WIFLYDEVICE_NETWORK_SCAN[] PROGMEM      = "scan ";
+prog_char s_WIFLYDEVICE_AOK[] PROGMEM               = "";
+prog_char s_WIFLYDEVICE_SET_UART_BAUD[] PROGMEM     = "set u b 9600 ";
+prog_char s_WIFLYDEVICE_DEAUTH[] PROGMEM            = "Deauth";
+prog_char s_WIFLYDEVICE_SET_NTP[] PROGMEM           = "set time a ";
+prog_char s_WIFLYDEVICE_SET_NTP_ENABLE[] PROGMEM    = "set time e ";
+prog_char s_WIFLYDEVICE_SET_DEVICEID[] PROGMEM      = "set opt deviceid ";
+prog_char s_WIFLYDEVICE_IP_DETAILS[] PROGMEM        = "get ip";
+prog_char s_WIFLYDEVICE_GET_DNS_DETAILS[] PROGMEM   = "get dns";
+prog_char s_WIFLYDEVICE_GET_TIME[] PROGMEM          = "show t t";
+prog_char s_WIFLYDEVICE_SET_DHCP[] PROGMEM          = "set ip dhcp ";
+prog_char s_WIFLYDEVICE_SET_IP[] PROGMEM            = "set ip a ";
+prog_char s_WIFLYDEVICE_SET_NETMASK[] PROGMEM       = "set ip n ";
+prog_char s_WIFLYDEVICE_SET_GATEWAY[] PROGMEM       = "set ip g ";
+prog_char s_WIFLYDEVICE_SET_DNS[] PROGMEM           = "set dns addr ";
+prog_char s_WIFLYDEVICE_SET_LOCAL_PORT[] PROGMEM    = "set ip local ";
+prog_char s_WIFLYDEVICE_SET_REMOTE_PORT[] PROGMEM   = "set ip remote  ";
+prog_char s_WIFLYDEVICE_SET_PROTOCOL[] PROGMEM      = "set ip proto ";
+prog_char s_WIFLYDEVICE_ERR_REBOOOT[] PROGMEM       = "Attempting reboot";
+prog_char s_WIFLYDEVICE_ERR_START_FAIL[] PROGMEM    = "Failed to get cmd prompt:Halted.";
+prog_char s_WIFLYDEVICE_SET_UART_MODE[] PROGMEM     = "set u m 1 ";
+prog_char s_WIFLYDEVICE_GET_WLAN[] PROGMEM          = "get wlan ";
+prog_char s_WIFLYDEVICE_GET_RSSI[] PROGMEM          = "show rssi ";
+prog_char s_WIFLYDEVICE_GET_BATTERY[] PROGMEM       = "show batt ";
+prog_char s_WIFLYDEVICE_GET_STATUS[] PROGMEM        = "show conn ";
+prog_char s_WIFLYDEVICE_RETURN[] PROGMEM            = "\r";
+prog_char s_WIFLYDEVICE_GET_IP_IND[] PROGMEM        = "IP=";
+prog_char s_WIFLYDEVICE_GET_NM_IND[] PROGMEM        = "NM=";
+prog_char s_WIFLYDEVICE_GET_GW_IND[] PROGMEM        = "GW=";
+prog_char s_WIFLYDEVICE_GET_DNS_IND[] PROGMEM       = "DNS=";
+prog_char s_WIFLYDEVICE_GET_WLAN_SSID_IND[] PROGMEM = "SSID=";
+prog_char s_WIFLYDEVICE_GET_RSSI_IND[] PROGMEM      = "RSSI=";
+prog_char s_WIFLYDEVICE_GET_WLAN_DEV_IND[] PROGMEM  = "DeviceID=";
+prog_char s_WIFLYDEVICE_GET_BATTERY_IND[] PROGMEM   = "Batt=";
+prog_char s_WIFLYDEVICE_GET_TIME_IND[] PROGMEM      = "RTC=";
+prog_char s_WIFLYDEVICE_GET_STATUS_IND[] PROGMEM    = "8";
+prog_char s_WIFLYDEVICE_GET_IP_UP_IND[] PROGMEM     = "F=";
 
 // Index of strings
 #define STI_WIFLYDEVICE_INDEX_JOIN        0
@@ -176,7 +174,7 @@ prog_char s_WIFLYDEVICE_GET_IP_UP_IND[] PROGMEM ="F=";
 #define STI_WIFLYDEVICE_SAVE              57
 
 // String Table in Program space
-PROGMEM const char *WiFlyDevice_string_table[] = 	   
+PROGMEM const char *WiFlyDevice_string_table[] =
 { 
     // 0-based index, see STI_WIFLY_DEVICE_ list above.  
     s_WIFLYDEVICE_JOIN,
@@ -258,24 +256,24 @@ PROGMEM const char *WiFlyDevice_string_table[] =
 
 // Convert a Buffer holding an IP address to a byte array.
 // Minimal safety checks - be careful!
-uint8_t* BufferToIP_Array(char* pBuffer, uint8_t* pIP) {
-
+uint8_t* 
+BufferToIP_Array(char* pBuffer, uint8_t* pIP) {
     char* posStart=0;
     char* posEnd=0;
     char alphabuf[IP_ADDR_WIDTH];
 
     posStart = pBuffer;
-    for (int i = 0; i<UC_N_IP_BYTES ; i++) {
-        memset(alphabuf,'\0',IP_ADDR_WIDTH);
-        posEnd = strchr(posStart,'.');
+    for (int i = 0; i < UC_N_IP_BYTES ; i++) {
+        memset(alphabuf, '\0', IP_ADDR_WIDTH);
+        posEnd = strchr(posStart, '.');
         if (posEnd == NULL) {
-            posEnd = strchr(posStart,'\0');
+            posEnd = strchr(posStart, '\0');
         }
         strncpy(alphabuf, posStart, posEnd-posStart);
 
-        pIP[i] = (uint8_t) atoi( alphabuf );
+        pIP[i] = (uint8_t)atoi(alphabuf);
         // Start looking one after last dot.
-        posStart = posEnd +1;
+        posStart = posEnd + 1;
     }
     return pIP;
 }
@@ -283,13 +281,13 @@ uint8_t* BufferToIP_Array(char* pBuffer, uint8_t* pIP) {
 
 // Convert a Buffer holding an IP address to a byte array.
 // Minimal safety checks - be careful!
-char* IP_ArrayToBuffer( const uint8_t* pIP, char* pBuffer, int buflen) {
-
+char*
+IP_ArrayToBuffer( const uint8_t* pIP, char* pBuffer, int buflen) {
     memset (pBuffer,'\0',buflen);
 
-    for (int i =0; i< UC_N_IP_BYTES; i++) {
-        itoa( (int) pIP[i], strchr(pBuffer,'\0'), 10);
-        if (i < UC_N_IP_BYTES -1 ) {
+    for (int i = 0; i < UC_N_IP_BYTES; i++) {
+        itoa((int)pIP[i], strchr(pBuffer, '\0'), 10);
+        if (i < (UC_N_IP_BYTES -1)) {
             strcat(pBuffer, ".");
         }
     }
@@ -333,7 +331,7 @@ WiFlySerial::WiFlySerial(AnySerial &port) : uart(port) {
     bWiFlyInCommandMode = false;
     bWiFlyConnectionOpen = false;
     fStatus = WIFLY_STATUS_OFFLINE ;
-    strcpy(szWiFlyPrompt, WiFlyFixedPrompts[WIFLY_MSG_PROMPT2] );  // ">"
+    strcpy(szWiFlyPrompt, WiFlyFixedPrompts[WIFLY_MSG_PROMPT2] );
     iLocalPort = WIFLY_DEFAULT_LOCAL_PORT;
     iRemotePort = WIFLY_DEFAULT_REMOTE_PORT;
 
@@ -343,7 +341,6 @@ WiFlySerial::WiFlySerial(AnySerial &port) : uart(port) {
     // ensure a default sink.
     pDebugChannel = NULL;
     pControl = WiFlyFixedPrompts[WIFLY_MSG_CLOSE];
-
 }
 
 // begin
@@ -351,7 +348,8 @@ WiFlySerial::WiFlySerial(AnySerial &port) : uart(port) {
 //
 // Parameters: none.
 // Returns: true on initialize success, false on failure.
-boolean WiFlySerial::begin() {
+boolean 
+WiFlySerial::begin() {
     boolean bStart = false;
     char szCmd[SMALL_COMMAND_BUFFER_SIZE];
     char szResponse[COMMAND_BUFFER_SIZE];
@@ -436,7 +434,8 @@ boolean WiFlySerial::begin() {
 //#define PROMPT_OPEN 128
 //#define PROMPT_CLOSE 256
 
-int WiFlySerial::ScanForPattern( char* responseBuffer, const int buflen,  const char *pExpectedPrompt, const boolean bCollecting,  const unsigned long WaitTime, const boolean bPromptAfterResult) {
+int 
+WiFlySerial::ScanForPattern( char* responseBuffer, const int buflen,  const char *pExpectedPrompt, const boolean bCollecting,  const unsigned long WaitTime, const boolean bPromptAfterResult) {
 
     byte iPromptFound = PROMPT_NONE;  
     char chResponse = 'A';
@@ -444,51 +443,61 @@ int WiFlySerial::ScanForPattern( char* responseBuffer, const int buflen,  const 
     int  bufsize = buflen -1;  //terminating null for bufsize
     boolean bWaiting = true;
 
-    WiFlyFixedPrompts[WIFLY_MSG_EXPECTED] = (char*) pExpectedPrompt;
-    WiFlyFixedPrompts[WIFLY_MSG_PROMPT] = (char*) szWiFlyPrompt;
+    WiFlyFixedPrompts[WIFLY_MSG_EXPECTED] = (char*)pExpectedPrompt;
+    WiFlyFixedPrompts[WIFLY_MSG_PROMPT] = (char*)szWiFlyPrompt;
     char* pFixedCurrent[N_PROMPTS];
     int iFixedPrompt = 0;
 
-    for (int i=0; i< N_PROMPTS; i++) {
+    for (int i = 0; i < N_PROMPTS; i++) {
         pFixedCurrent[i] = WiFlyFixedPrompts[i];
     }
 
     memset (responseBuffer, '\0', bufsize);
     unsigned long TimeAtStart = millis()  ;  // capture current time
 
-    while (bWaiting ) {    
-        if ( uart.available() > 0 ) {
+    while (bWaiting) {    
+        if (uart.available() > 0) {
             chResponse = uart.read(); 
             DebugPrint(chResponse);
 
-            if ( bCollecting ) {     
-                responseBuffer[bufpos]=chResponse;
-                if ( ++bufpos == bufsize ) {     
+            if (bCollecting) {
+                responseBuffer[bufpos] = chResponse;
+                if (++bufpos == bufsize) {     
                     bufpos = 0;
                 } // if buffer wrapped
             } // if capturing
 
-            for ( iFixedPrompt = 0; iFixedPrompt< N_PROMPTS; iFixedPrompt++ ) {
-                if ( chResponse == *pFixedCurrent[iFixedPrompt] ) {
-                    // deal with 'open' and 'scan' version-prompt appearing BEFORE result; ignore it
-                    if ( (!bPromptAfterResult) && (iFixedPrompt == WIFLY_MSG_PROMPT || iFixedPrompt == WIFLY_MSG_PROMPT2) /* standard version-prompt */  ) {
+            for (iFixedPrompt = 0; iFixedPrompt < N_PROMPTS; iFixedPrompt++) {
+                if (chResponse == *pFixedCurrent[iFixedPrompt]) {
+                    /*
+                     * deal with 'open' and 'scan' version-prompt appearing 
+                     * BEFORE result; ignore it 
+                     */
+                    if ((!bPromptAfterResult) && 
+                            /* standard version-prompt */  
+                            (iFixedPrompt == WIFLY_MSG_PROMPT || 
+                             iFixedPrompt == WIFLY_MSG_PROMPT2)) {
                         bWaiting = true;
                         iPromptFound |= PROMPT_READY;
                     } else {
-                        bWaiting = ( *(++pFixedCurrent[iFixedPrompt]) == '\0' ? false : true ) ; // done when end-of-string encountered.            
+                        // done when end-of-string encountered.            
+                        bWaiting = (*(++pFixedCurrent[iFixedPrompt]) == '\0' ? false : true ); 
                         if (!bWaiting) {				
-                            iPromptFound |= WiFlyFixedFlags[iFixedPrompt];  // if a prompt found then grab its flag.
+                            // if a prompt found then grab its flag.
+                            iPromptFound |= WiFlyFixedFlags[iFixedPrompt];
                         }
                     } // handle prompt-BEFORE-result case
                 } else {
-                    pFixedCurrent[iFixedPrompt] = WiFlyFixedPrompts[iFixedPrompt];  // not next char expected; reset to beginning of string.
+                    // not next char expected; reset to beginning of string.
+                    pFixedCurrent[iFixedPrompt] = WiFlyFixedPrompts[iFixedPrompt];
                 } // if tracking expected response
             }
             // If the *OPEN* signal caught then a connection was opened.
             if (iPromptFound & (PROMPT_OPEN | PROMPT_OPEN_ALREADY)  ) {
                 bWiFlyConnectionOpen = true;
                 bWiFlyInCommandMode = false;
-                iPromptFound &= (!WiFlyFixedFlags[WIFLY_MSG_CLOSE]);  // clear prior close
+                // clear prior close
+                iPromptFound &= (!WiFlyFixedFlags[WIFLY_MSG_CLOSE]);
             }
 
             // If the *CLOS* signal caught then a connection was closed 
@@ -496,20 +505,22 @@ int WiFlySerial::ScanForPattern( char* responseBuffer, const int buflen,  const 
             if (iPromptFound & PROMPT_CLOSE ) {
                 bWiFlyConnectionOpen = false;
                 bWiFlyInCommandMode = true;
-                iPromptFound &= (!WiFlyFixedFlags[WIFLY_MSG_OPEN]);  // clear prior open
+                // clear prior open
+                iPromptFound &= (!WiFlyFixedFlags[WIFLY_MSG_OPEN]);
             }
 
         } // if anything in uart
         // did we time-out?
-        if ( (millis() - TimeAtStart) >= WaitTime) {
+        if ((millis() - TimeAtStart) >= WaitTime) {
             bWaiting = false;        
         }
     }  // while waiting for a line
+
     // could capture and compare with known prompt
-    if ( bCollecting ) {   
+    if (bCollecting) {   
         responseBuffer[bufpos]='\0'; 
     }
-    return (int) iPromptFound;
+    return (int)iPromptFound;
 
 } // ScanForPattern
 
@@ -522,7 +533,8 @@ int WiFlySerial::ScanForPattern( char* responseBuffer, const int buflen,  const 
 // 
 // Returns true for Command mode entered, false if not (something weird afoot).
 
-boolean WiFlySerial::StartCommandMode(char* pBuffer, const int bufSize) {
+boolean 
+WiFlySerial::StartCommandMode(char* pBuffer, const int bufSize) {
     byte iPromptResult = 0;
     char* responseBuffer;
     boolean bWaiting = true;
@@ -530,43 +542,47 @@ boolean WiFlySerial::StartCommandMode(char* pBuffer, const int bufSize) {
 
 
     if (pBuffer == NULL) {
-        responseBuffer = (char*) malloc(bufSize); // defaults to COMMAND_BUFFER_SIZE
+        // defaults to COMMAND_BUFFER_SIZE
+        responseBuffer = (char*)malloc(bufSize); 
     } else {
         responseBuffer = pBuffer;
     }
 
     unsigned long TimeOutTime = millis() + ATTN_WAIT_TIME;
     // check if actually in command mode:
-    while  (!bWiFlyInCommandMode || bWaiting ) {
+    while (!bWiFlyInCommandMode || bWaiting) {
 
         // if not effectively in command mode, try $$$
-        if ( !bWiFlyInCommandMode) {
-
+        if (!bWiFlyInCommandMode) {
             uart.flush();
             // Send $$$ , wait a moment, look for CMD
-            delay(COMMAND_MODE_GUARD_TIME );
-	    uart << GetBuffer_P(STI_WIFLYDEVICE_ATTN, responseBuffer, bufSize) ;
+            delay(COMMAND_MODE_GUARD_TIME);
+            uart << GetBuffer_P(STI_WIFLYDEVICE_ATTN, responseBuffer, bufSize);
             uart.flush();
-            delay(COMMAND_MODE_GUARD_TIME  );
+            delay(COMMAND_MODE_GUARD_TIME);
             if (nTries >= 2)  {
                 uart << "\r";
                 uart.flush();
             }
-            // expect CMD without a cr
-            // WiFlyFixedPrompts[WIFLY_MSG_CMD]
-            iPromptResult = ScanForPattern( responseBuffer, bufSize, "CMD", true, ATTN_WAIT_TIME);
+            /*
+             * expect CMD without a cr
+             * WiFlyFixedPrompts[WIFLY_MSG_CMD]
+             */
+            iPromptResult = ScanForPattern(responseBuffer, bufSize, "CMD", true, ATTN_WAIT_TIME);
 
-            if ( iPromptResult & ( PROMPT_EXPECTED_TOKEN_FOUND | PROMPT_READY |PROMPT_CMD_MODE |PROMPT_CMD_ERR ) ) {
+            if (iPromptResult & (PROMPT_EXPECTED_TOKEN_FOUND | PROMPT_READY | PROMPT_CMD_MODE | PROMPT_CMD_ERR)) {
                 bWiFlyInCommandMode = true;
                 bWaiting = false;
             } else {
                 bWiFlyInCommandMode = false;
-            }      // if one of several indicators of command-mode received.     
+            }      // if one of several indicators of command-mode received.
 
         } else { 
 
-            // think we are in a command-mode - try a cr, then add a version command to get through.
-            // send a ver + cr, should see a prompt.
+            /*
+             * think we are in a command-mode - try a cr, then add a version command to get through.
+             * send a ver + cr, should see a prompt.
+             */
             if (nTries > 2)  {
                 uart << GetBuffer_P(STI_WIFLYDEVICE_VER, responseBuffer, bufSize);
                 // DebugPrint("ver=");
@@ -578,10 +594,10 @@ boolean WiFlySerial::StartCommandMode(char* pBuffer, const int bufSize) {
             // bring in a cr-terminated line
             uart.flush();
             // wait for up to time limit for a cr to flow by
-            iPromptResult = ScanForPattern( responseBuffer, bufSize, szWiFlyPrompt, false);
+            iPromptResult = ScanForPattern(responseBuffer, bufSize, szWiFlyPrompt, false);
             // could have timed out, or have *READY*, CMD or have a nice CR.
 
-            if ( iPromptResult & ( PROMPT_EXPECTED_TOKEN_FOUND | PROMPT_AOK | PROMPT_READY |PROMPT_CMD_MODE |PROMPT_CMD_ERR ) ) {
+            if (iPromptResult & (PROMPT_EXPECTED_TOKEN_FOUND | PROMPT_AOK | PROMPT_READY | PROMPT_CMD_MODE | PROMPT_CMD_ERR)) {
                 bWiFlyInCommandMode = true;
                 bWaiting = false;
             } else {
@@ -590,7 +606,7 @@ boolean WiFlySerial::StartCommandMode(char* pBuffer, const int bufSize) {
 
         } //  else in in command command mode
 
-        if (  millis() >= TimeOutTime) {
+        if (millis() >= TimeOutTime) {
             bWaiting = false;
         }
         nTries++;
@@ -609,26 +625,26 @@ boolean WiFlySerial::StartCommandMode(char* pBuffer, const int bufSize) {
 // Parameters: None
 // Sets global szWiFlyPrompt
 // Returns command prompt on success or empty string on failure
-boolean WiFlySerial::GetCmdPrompt () {
-
+boolean 
+WiFlySerial::GetCmdPrompt() {
     boolean bOk = false;
     char responseBuffer[RESPONSE_BUFFER_SIZE];
 
-    if ( StartCommandMode(responseBuffer, RESPONSE_BUFFER_SIZE)  ) {
-        uart << GetBuffer_P(STI_WIFLYDEVICE_VER, responseBuffer, RESPONSE_BUFFER_SIZE )  << "\r";
+    if (StartCommandMode(responseBuffer, RESPONSE_BUFFER_SIZE)) {
+        uart << GetBuffer_P(STI_WIFLYDEVICE_VER, responseBuffer, RESPONSE_BUFFER_SIZE);
+        uart << "\r";
         uart.flush();
         ScanForPattern(responseBuffer, RESPONSE_BUFFER_SIZE, WiFlyFixedPrompts[WIFLY_MSG_PROMPT2], true, COMMAND_MODE_GUARD_TIME);
-        char* pPromptStart = strrchr(responseBuffer, '<') ;
-        char* pPromptEnd = strrchr (responseBuffer, '>');
+        char* pPromptStart = strrchr(responseBuffer, '<');
+        char* pPromptEnd = strrchr(responseBuffer, '>');
 
-        if ( (pPromptStart < pPromptEnd ) && pPromptStart && pPromptEnd) {
-            strncpy(szWiFlyPrompt, pPromptStart , (size_t) (pPromptEnd - pPromptStart)+1 );
-            szWiFlyPrompt[(pPromptEnd - pPromptStart)+1] = '\0';
-
+        if ((pPromptStart < pPromptEnd ) && pPromptStart && pPromptEnd) {
+            strncpy(szWiFlyPrompt, pPromptStart , (size_t)((pPromptEnd - pPromptStart) + 1));
+            szWiFlyPrompt[(pPromptEnd - pPromptStart) + 1] = '\0';
         }
     }
 
-    if ( strlen (szWiFlyPrompt) > 1 ) {
+    if (strlen(szWiFlyPrompt) > 1) {
         bOk = true;
         // DebugPrint( F("CmdPrompt:") );
         // DebugPrint(szWiFlyPrompt);
@@ -655,42 +671,42 @@ boolean WiFlySerial::GetCmdPrompt () {
 // bPromptAfterResult true=commands end with a version-prompt, false=version-prompt precedes results.
 //
 // Returns true on SuccessIndicator presence, false if absent.
-boolean WiFlySerial::SendCommand( char *pCmd,  char *SuccessIndicator, char* pResultBuffer, const int bufsize, 
-        const boolean bCollecting, const  unsigned long iWaitTime, const boolean bClear, const boolean bPromptAfterResult) {
+boolean 
+WiFlySerial::SendCommand(char *pCmd, char *SuccessIndicator, char* pResultBuffer,
+        const int bufsize, const boolean bCollecting, const unsigned long iWaitTime,
+        const boolean bClear, const boolean bPromptAfterResult) {
 
     boolean bCommandOK = false;
     int iResponse = 0;
     int iTry = 0;
 
-    char* Command  = pCmd;
-    if (pCmd == pResultBuffer ) {
-        Command = (char*) malloc( sizeof(pCmd) +1 );
-        strcpy( Command, pCmd);
+    char* Command = pCmd;
+    if (pCmd == pResultBuffer) {
+        Command = (char*)malloc(sizeof(pCmd) + 1);
+        strcpy(Command, pCmd);
     }
-    //      
-    // clear out leftover characters coming in
 
-    if ( bClear ) {
-        while ( available() ) {
+    // clear out leftover characters coming in
+    if (bClear) {
+        while (available()) {
             read();
         } 
     } 
-
-
-    //
     DebugPrint( "Cmd:");
     DebugPrint( Command );
     //  DebugPrint( " Ind:" );
     //  DebugPrint( SuccessIndicator);
 
 
-    if ( StartCommandMode(pResultBuffer, bufsize) ) {
+    if (StartCommandMode(pResultBuffer, bufsize)) {
         uart.flush();
 
-        while ( ((iResponse & PROMPT_EXPECTED_TOKEN_FOUND) != PROMPT_EXPECTED_TOKEN_FOUND) && iTry < COMMAND_RETRY_ATTEMPTS ) {
-            uart << Command << "\r" ;
+        while (((iResponse & PROMPT_EXPECTED_TOKEN_FOUND) != PROMPT_EXPECTED_TOKEN_FOUND) 
+                && iTry < COMMAND_RETRY_ATTEMPTS) {
+            uart << Command << "\r";
             uart.flush();
-            iResponse = ScanForPattern( pResultBuffer, bufsize, SuccessIndicator, bCollecting, iWaitTime, bPromptAfterResult );   
+            iResponse = ScanForPattern(pResultBuffer, bufsize, SuccessIndicator,
+                    bCollecting, iWaitTime, bPromptAfterResult);   
 
             //       DebugPrint("Try#:");
             //       DebugPrint( iTry ); 
@@ -700,32 +716,46 @@ boolean WiFlySerial::SendCommand( char *pCmd,  char *SuccessIndicator, char* pRe
         }
 
     }
-    if ( pCmd == pResultBuffer ) {
+    if (pCmd == pResultBuffer) {
         free (Command);
     }
 
-    if ( bClear ) {
-        ScanForPattern(strchr(pResultBuffer, '\0') +1, bufsize - strlen(pResultBuffer) -1, WiFlyFixedPrompts[WIFLY_MSG_CLOSE], false, DEFAULT_WAIT_TIME, true);
-        //     while ( (ch = uart.read() ) > -1 ) {
-        //       DebugPrint(ch);
-        //     }
+    if (bClear) {
+        ScanForPattern(strchr(pResultBuffer, '\0') + 1, bufsize - strlen(pResultBuffer) - 1,
+                WiFlyFixedPrompts[WIFLY_MSG_CLOSE], false, DEFAULT_WAIT_TIME, true);
     } // clear out leftover characters
 
-    bCommandOK = ( ((iResponse & PROMPT_EXPECTED_TOKEN_FOUND) == PROMPT_EXPECTED_TOKEN_FOUND) ? true : false );
+    bCommandOK = (((iResponse & PROMPT_EXPECTED_TOKEN_FOUND) == PROMPT_EXPECTED_TOKEN_FOUND) ? true : false);
 
     return bCommandOK;
 }
 
 // convenient and version with own small ignored response buffer.
-boolean WiFlySerial::SendCommandSimple( char* pCommand,  char* pSuccessIndicator) {
+boolean 
+WiFlySerial::SendCommandSimple( char* pCommand,  char* pSuccessIndicator) {
 
     char bufResponse[INDICATOR_BUFFER_SIZE];
-
-    return SendCommand(  pCommand, pSuccessIndicator, bufResponse, INDICATOR_BUFFER_SIZE, false );
+    return SendCommand(pCommand, pSuccessIndicator, bufResponse, INDICATOR_BUFFER_SIZE, false);
 }
 
 
-
+/*
+ * SendInquiry
+ * Inquiries provide a device setting result, terminated with a command prompt.
+ * No specific 'ok/fail' result shown, only ERR or requested response.
+ * Results placed into global responsebuffer
+ *
+ * Parameters: 
+ * Command        The inquiry-command to send
+ * pBuffer        pointer to a buffer for the response
+ * bufsize        size of the buffer
+ *
+ * Returns true on command success, false on failure.
+ */
+boolean 
+WiFlySerial::SendInquiry(char *Command, char* pBuffer, const int bufsize) {
+    return SendCommand(Command, szWiFlyPrompt, pBuffer, bufsize, true);
+}
 
 // SendInquiry
 // Inquiries provide a device setting result, terminated with a command prompt.
@@ -734,29 +764,15 @@ boolean WiFlySerial::SendCommandSimple( char* pCommand,  char* pSuccessIndicator
 //
 // Parameters: 
 // Command        The inquiry-command to send
-// pBuffer        pointer to a buffer for the response
-// bufsize        size of the buffer
 //
 // Returns true on command success, false on failure.
-boolean WiFlySerial::SendInquiry( char *Command, char* pBuffer, const int bufsize) {
-
-    return  SendCommand(Command,  szWiFlyPrompt, pBuffer, bufsize, true);
-
-}
-// SendInquiry
-// Inquiries provide a device setting result, terminated with a command prompt.
-// No specific 'ok/fail' result shown, only ERR or requested response.
-// Results placed into global responsebuffer
-//
-// Parameters: 
-// Command        The inquiry-command to send
-//
-// Returns true on command success, false on failure.
-boolean WiFlySerial::SendInquirySimple( char *Command ) {
+boolean 
+WiFlySerial::SendInquirySimple(char *Command) {
     char InquiryBuffer[RESPONSE_BUFFER_SIZE];
 
     boolean bSendInquiry = false;
-    bSendInquiry = SendCommand(Command,  szWiFlyPrompt, InquiryBuffer, RESPONSE_BUFFER_SIZE, true);
+    bSendInquiry = SendCommand(Command, szWiFlyPrompt, InquiryBuffer, 
+            RESPONSE_BUFFER_SIZE, true);
     // should trim to returned result less ExpectedPrompt
 
     return bSendInquiry;
@@ -771,16 +787,17 @@ boolean WiFlySerial::SendInquirySimple( char *Command ) {
 // Parameters: 
 // None
 // Returns true on command success, false on failure.
-boolean WiFlySerial::exitCommandMode() {
-
+boolean 
+WiFlySerial::exitCommandMode() {
     char szCmd[INDICATOR_BUFFER_SIZE]; // exit command is short
     char szPrompt[INDICATOR_BUFFER_SIZE]; // exit Prompt is short:  EXIT (which looks like 'exit' but in upper case).
     char szResponse[INDICATOR_BUFFER_SIZE]; // small buffer for result
 
-    bWiFlyInCommandMode = !SendCommand( GetBuffer_P(STI_WIFLYDEVICE_LEAVE_CMD_MODE, szCmd, INDICATOR_BUFFER_SIZE),
+    bWiFlyInCommandMode = !SendCommand(GetBuffer_P(STI_WIFLYDEVICE_LEAVE_CMD_MODE, szCmd, INDICATOR_BUFFER_SIZE),
             strupr(GetBuffer_P(STI_WIFLYDEVICE_LEAVE_CMD_MODE, szPrompt, INDICATOR_BUFFER_SIZE)),
-            szResponse, INDICATOR_BUFFER_SIZE, false );    
+            szResponse, INDICATOR_BUFFER_SIZE, false);
 
+    // WTF?  it's hard coded to false???
     bWiFlyInCommandMode = false;
     return bWiFlyInCommandMode;
 }
@@ -791,10 +808,10 @@ boolean WiFlySerial::exitCommandMode() {
 // Parameters: 
 // pNetScan    Buffer for scan results (should be large)
 // buflen      length of buffer
-char* WiFlySerial::showNetworkScan( char* pNetScan, const int buflen) {
+char* 
+WiFlySerial::showNetworkScan(char* pNetScan, const int buflen) {
 
-    SendCommand("scan","'", pNetScan, buflen, true, JOIN_WAIT_TIME, true, false) ;
-
+    SendCommand("scan", "'", pNetScan, buflen, true, JOIN_WAIT_TIME, true, false);
     return pNetScan;
 
 }
@@ -811,33 +828,29 @@ char* WiFlySerial::showNetworkScan( char* pNetScan, const int buflen) {
 // Switching from one to the other requires a reboot of the WiFly.
 // For UDP, set all other settings first (unlike example in manual) ; UDP traffic will start upon WiFly reboot.
 // This version does not attempt to determine current mode. Reboot forced.
-boolean WiFlySerial::setProtocol( unsigned int iProtocol) {
-
+boolean 
+WiFlySerial::setProtocol(unsigned int iProtocol) {
     boolean bOk = false;
     unsigned int iMode = 0, iTmp; 
     char bufMode[10];  
 
-    iTmp = iProtocol &  WIFLY_IPMODE_TCP;
+    iTmp = iProtocol & WIFLY_IPMODE_TCP;
 
-    if (  iTmp != 0x00 ) {
+    if (iTmp != 0x00) {
         iMode |= 0x02; 
     } 
 
     iTmp = WIFLY_IPMODE_UDP & iProtocol;
-    if (iTmp ) {
+    if (iTmp) {
         iMode |= 0x01;
     }
 
-    itoa( iMode, bufMode, 10);
-
-    bOk =  issueSetting( STI_WIFLYDEVICE_SET_PROTOCOL, bufMode );
+    itoa(iMode, bufMode, 10);
+    bOk = issueSetting(STI_WIFLYDEVICE_SET_PROTOCOL, bufMode);
 
     // Save settings
-
     char szCommand[SMALL_COMMAND_BUFFER_SIZE];
-
     GetBuffer_P(STI_WIFLYDEVICE_SAVE, szCommand, SMALL_COMMAND_BUFFER_SIZE);
-
     bOk = SendCommandSimple(szCommand , WiFlyFixedPrompts[WIFLY_MSG_AOK]);
     reboot();
 
@@ -862,24 +875,25 @@ boolean WiFlySerial::setProtocol( unsigned int iProtocol) {
 // Opening a connection switches to Data mode from Command mode.
 //
 // Note: Open and Scan each generate a version-prompt BEFORE results, not after.
-boolean WiFlySerial::openConnection(const char* pURL, const unsigned long iWaitTime) {
+boolean 
+WiFlySerial::openConnection(const char* pURL, const unsigned long iWaitTime) {
     char bufOpen[INDICATOR_BUFFER_SIZE];
     char bufCommand[COMMAND_BUFFER_SIZE];
 
     memset (bufCommand, '\0', COMMAND_BUFFER_SIZE);
     GetBuffer_P(STI_WIFLYDEVICE_OPEN, bufCommand, COMMAND_BUFFER_SIZE);
-    strcat (bufCommand, pURL);
-    strcat (bufCommand, " ");
-    itoa( iRemotePort, strchr(bufCommand, '\0'), 10);
+    strcat(bufCommand, pURL);
+    strcat(bufCommand, " ");
+    itoa(iRemotePort, strchr(bufCommand, '\0'), 10);
     DebugPrint("openConnection:");
     DebugPrint(bufCommand);
-    bWiFlyConnectionOpen = SendCommand(bufCommand,WiFlyFixedPrompts[WIFLY_MSG_OPEN], bufOpen, INDICATOR_BUFFER_SIZE, false, iWaitTime , true, false); 
-    if( bWiFlyConnectionOpen) {
+    bWiFlyConnectionOpen = SendCommand(bufCommand, WiFlyFixedPrompts[WIFLY_MSG_OPEN],
+            bufOpen, INDICATOR_BUFFER_SIZE, false, iWaitTime , true, false); 
+
+    if (bWiFlyConnectionOpen) {
         bWiFlyInCommandMode = false;
     }
-
     return bWiFlyConnectionOpen;
-
 }
 
 // closeConnection
@@ -907,28 +921,29 @@ boolean WiFlySerial::openConnection(const char* pURL, const unsigned long iWaitT
 //
 // returns true on closure, false on failure to close.
 // 
-boolean WiFlySerial::closeConnection(boolean bSafeClose) {
-    // if a connection is open then close it.
+boolean 
+WiFlySerial::closeConnection(boolean bSafeClose) {
     char chDrain;
 
-    if ( bWiFlyConnectionOpen ) {
+    if (bWiFlyConnectionOpen) {
         // first see if connection is *STILL* open. 
         boolean bClosed = false;
         boolean bTrySafeClose = bSafeClose;
         boolean bDoClose = true;
 
         // repeat until closed...
-        while ( bWiFlyConnectionOpen ) {
+        while (bWiFlyConnectionOpen) {
             if (bTrySafeClose) {
                 getDeviceStatus();
-                if ( isTCPConnected() && bWiFlyConnectionOpen ) {
+                if (isTCPConnected() && bWiFlyConnectionOpen) {
                     bDoClose = true;
                 } else {
                     bDoClose = false;
                     bWiFlyConnectionOpen = false; // should be redundant as a caught *CLOS* will set this to false.
                 }
             } // if doing safe close
-            if ( bDoClose ) {
+
+            if (bDoClose) {
                 drain();
                 char bufCmd[INDICATOR_BUFFER_SIZE];
                 char bufClose[INDICATOR_BUFFER_SIZE];
@@ -936,12 +951,19 @@ boolean WiFlySerial::closeConnection(boolean bSafeClose) {
                 memset( bufClose, '\0', INDICATOR_BUFFER_SIZE);
 
                 // close command response is a prompt, then a *CLOS* signal after.
-                SendCommand(GetBuffer_P(STI_WIFLYDEVICE_CLOSE, bufCmd, INDICATOR_BUFFER_SIZE),WiFlyFixedPrompts[WIFLY_MSG_PROMPT],    bufClose,    INDICATOR_BUFFER_SIZE, true, DEFAULT_WAIT_TIME , false);
-                DebugPrint( bufCmd );
-                DebugPrint( bufClose );
+                SendCommand(GetBuffer_P(STI_WIFLYDEVICE_CLOSE, 
+                            bufCmd, 
+                            INDICATOR_BUFFER_SIZE), 
+                        WiFlyFixedPrompts[WIFLY_MSG_PROMPT],
+                        bufClose,
+                        INDICATOR_BUFFER_SIZE,
+                        true, 
+                        DEFAULT_WAIT_TIME,
+                        false);
 
+                DebugPrint(bufCmd);
+                DebugPrint(bufClose);
                 drain();
-
                 bWiFlyInCommandMode = true;
             }
         } // while
@@ -956,17 +978,17 @@ boolean WiFlySerial::closeConnection(boolean bSafeClose) {
 // drain
 // Empties incoming buffer 
 
-int WiFlySerial::drain() {
+int 
+WiFlySerial::drain() {
     char chDrain;
     unsigned long TimeOutTime = millis() + DEFAULT_WAIT_TIME;
     // DebugPrint("Waiting for signal");
-    while ( bWiFlyConnectionOpen && available() > 0 && millis() < TimeOutTime  ) {
+    while (bWiFlyConnectionOpen && 
+            (available() > 0) && 
+            (millis() < TimeOutTime)) {
         chDrain = read();
-        DebugPrint( chDrain );
+        DebugPrint(chDrain);
     }
-    // DebugPrint("Drained.");
-
-
 }
 
 
@@ -978,16 +1000,17 @@ int WiFlySerial::drain() {
 //
 // returns            true on connection, false on internal failure.
 //
-boolean WiFlySerial::serveConnection( const unsigned long reconnectWaitTime )
+boolean 
+WiFlySerial::serveConnection(const unsigned long reconnectWaitTime)
 {
     char bufRequest[COMMAND_BUFFER_SIZE];
     int iRequest;
     boolean bReturn = false;
 
+    iRequest = ScanForPattern(bufRequest, COMMAND_BUFFER_SIZE, 
+            WiFlyFixedPrompts[WIFLY_MSG_OPEN], false, reconnectWaitTime);
 
-    iRequest = ScanForPattern( bufRequest, COMMAND_BUFFER_SIZE, WiFlyFixedPrompts[WIFLY_MSG_OPEN], false,reconnectWaitTime );
-    if ( ( iRequest &  PROMPT_EXPECTED_TOKEN_FOUND) == PROMPT_EXPECTED_TOKEN_FOUND ) {
-        //memset (bufRequest,'\0',COMMAND_BUFFER_SIZE);
+    if ((iRequest & PROMPT_EXPECTED_TOKEN_FOUND) == PROMPT_EXPECTED_TOKEN_FOUND) {
         bWiFlyInCommandMode = false;
         bReturn = true;
     } else {
@@ -997,8 +1020,6 @@ boolean WiFlySerial::serveConnection( const unsigned long reconnectWaitTime )
     }
 
     // TODO: decision on timeout/reconnection status
-
-
     return bReturn;
 }
 
@@ -1011,8 +1032,10 @@ boolean WiFlySerial::serveConnection( const unsigned long reconnectWaitTime )
 // buflen    length of buffer (should be at least 18 chars)
 // Returns:  pointer to supplied buffer MAC address, or empty string on failure.
 // Format expected: Mac Addr=xx:xx:xx:xx:xx:xx
-char* WiFlySerial::getMAC(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_MAC, pbuf, buflen, STI_WIFLYDEVICE_GET_MAC_ADDR, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getMAC(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_MAC, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_MAC_ADDR, STI_WIFLYDEVICE_RETURN);
 }
 
 // getIP
@@ -1023,8 +1046,10 @@ char* WiFlySerial::getMAC(char* pbuf, int buflen) {
 // buflen    length of buffer (should be at least 18 chars for IPv4 and longer for IPv6)
 // Returns:  pointer to supplied buffer with IP address, will be empty string on failure.
 // 
-char* WiFlySerial::getIP(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_IP_DETAILS, pbuf, buflen, STI_WIFLYDEVICE_GET_IP_IND, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getIP(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_IP_DETAILS, pbuf, buflen,
+            STI_WIFLYDEVICE_GET_IP_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 // getNetMask
@@ -1034,8 +1059,10 @@ char* WiFlySerial::getIP(char* pbuf, int buflen) {
 // buf     buffer for Netmask 
 // buflen    length of buffer (should be at least 18 chars for IPv4 and longer for IPv6)
 // Returns:  pointer to supplied buffer with GW address, will be empty string on failure.
-char* WiFlySerial::getNetMask(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_IP_DETAILS, pbuf, buflen, STI_WIFLYDEVICE_GET_NM_IND, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getNetMask(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_IP_DETAILS, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_NM_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 
@@ -1046,8 +1073,10 @@ char* WiFlySerial::getNetMask(char* pbuf, int buflen) {
 // bufGW     buffer for IP address
 // buflen    length of buffer (should be at least 18 chars for IPv4 and longer for IPv6)
 // Returns:  pointer to supplied buffer with GW address, will be empty string on failure.
-char* WiFlySerial::getGateway(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_IP_DETAILS, pbuf, buflen, STI_WIFLYDEVICE_GET_GW_IND, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getGateway(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_IP_DETAILS, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_GW_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 
@@ -1058,9 +1087,10 @@ char* WiFlySerial::getGateway(char* pbuf, int buflen) {
 // bufDNS    buffer for IP address
 // buflen    length of buffer (should be at least 18 chars for IPv4 and longer for IPv6)
 // Returns:  pointer to supplied buffer with DNS address, will be empty string on failure.
-char* WiFlySerial::getDNS(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_DNS_DETAILS, pbuf, buflen, STI_WIFLYDEVICE_GET_DNS_IND, STI_WIFLYDEVICE_RETURN ) ;
-
+char* 
+WiFlySerial::getDNS(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_DNS_DETAILS, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_DNS_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 // getSSID
@@ -1071,8 +1101,10 @@ char* WiFlySerial::getDNS(char* pbuf, int buflen) {
 // buflen    length of buffer (should be at least 18 chars for IPv4 and longer for IPv6)
 // Returns:  pointer to supplied buffer with SSID, will be empty string on failure.
 // 
-char* WiFlySerial::getSSID(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_WLAN, pbuf, buflen, STI_WIFLYDEVICE_GET_WLAN_SSID_IND, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getSSID(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_WLAN, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_WLAN_SSID_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 // getRSSI
@@ -1083,8 +1115,10 @@ char* WiFlySerial::getSSID(char* pbuf, int buflen) {
 // buflen    length of buffer 
 // Returns:  pointer to supplied buffer with RSSI, will be empty string on failure.
 // 
-char* WiFlySerial::getRSSI(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_RSSI, pbuf, buflen, STI_WIFLYDEVICE_GET_RSSI_IND, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getRSSI(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_RSSI, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_RSSI_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 // getBattery
@@ -1095,8 +1129,10 @@ char* WiFlySerial::getRSSI(char* pbuf, int buflen) {
 // buflen    length of buffer 
 // Returns:  pointer to supplied buffer with battery voltage, will be empty string on failure.
 // 
-char* WiFlySerial::getBattery(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_BATTERY, pbuf, buflen, STI_WIFLYDEVICE_GET_BATTERY_IND, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getBattery(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_BATTERY, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_BATTERY_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 // getDeviceID
@@ -1107,8 +1143,10 @@ char* WiFlySerial::getBattery(char* pbuf, int buflen) {
 // buflen    length of buffer (should be at least 18 chars for IPv4 and longer for IPv6)
 // Returns:  pointer to supplied buffer with DeviceID, will be empty string on failure.
 // 
-char* WiFlySerial::getDeviceID(char* pbuf, int buflen) {
-    return ExtractDetailIdx( STI_WIFLYDEVICE_GET_WLAN, pbuf, buflen, STI_WIFLYDEVICE_GET_WLAN_DEV_IND, STI_WIFLYDEVICE_RETURN ) ;
+char* 
+WiFlySerial::getDeviceID(char* pbuf, int buflen) {
+    return ExtractDetailIdx(STI_WIFLYDEVICE_GET_WLAN, pbuf, buflen, 
+            STI_WIFLYDEVICE_GET_WLAN_DEV_IND, STI_WIFLYDEVICE_RETURN);
 }
 
 
@@ -1118,10 +1156,14 @@ char* WiFlySerial::getDeviceID(char* pbuf, int buflen) {
 // Parameters: 
 // Returns:  unsigned long representing seconds since Unix Epoch or power-on.
 // Format expected: RTC=tttttttt ms
-unsigned long WiFlySerial::getTime() {
+unsigned long 
+WiFlySerial::getTime() {
     char bufTimeSerial[COMMAND_BUFFER_SIZE];
 
-    return ( atol(ExtractDetailIdx( STI_WIFLYDEVICE_GET_TIME, bufTimeSerial, COMMAND_BUFFER_SIZE, STI_WIFLYDEVICE_GET_TIME_IND, STI_WIFLYDEVICE_RETURN ) ) + lUTC_Offset_seconds);
+    return (
+            atol(ExtractDetailIdx(STI_WIFLYDEVICE_GET_TIME, bufTimeSerial, 
+                    COMMAND_BUFFER_SIZE, STI_WIFLYDEVICE_GET_TIME_IND, STI_WIFLYDEVICE_RETURN)
+                ) + lUTC_Offset_seconds);
 }
 
 // TODO: add GetTimeStatus
@@ -1136,14 +1178,16 @@ unsigned long WiFlySerial::getTime() {
 // None.
 // Returns true on success, false on failure.
 // 
-long WiFlySerial::getDeviceStatus() {
-
+long 
+WiFlySerial::getDeviceStatus() {
     char bufStatus[INDICATOR_BUFFER_SIZE];
+
     memset(bufStatus,'\0',INDICATOR_BUFFER_SIZE);
     // place leading fixed '8' into first position
     bufStatus[0]='8';
 
-    ExtractDetailIdx( STI_WIFLYDEVICE_GET_STATUS, &bufStatus[1], INDICATOR_BUFFER_SIZE - 1, STI_WIFLYDEVICE_GET_STATUS_IND, STI_WIFLYDEVICE_RETURN ) ;
+    ExtractDetailIdx(STI_WIFLYDEVICE_GET_STATUS, &bufStatus[1], 
+            INDICATOR_BUFFER_SIZE - 1, STI_WIFLYDEVICE_GET_STATUS_IND, STI_WIFLYDEVICE_RETURN);
 
     fStatus = strtol(bufStatus, (char**)0, 16);
     return fStatus;
@@ -1161,16 +1205,13 @@ long WiFlySerial::getDeviceStatus() {
 // None. 
 // Returns true on success, false on failure.
 // 
-boolean WiFlySerial::isTCPConnected() { 
-
-    if ( (fStatus & 0x8000) == 0 ) {
-
+boolean 
+WiFlySerial::isTCPConnected() { 
+    if ((fStatus & 0x8000) == 0) {
         getDeviceStatus();
     }
 
-
     return ((fStatus &  0x01) > 0 ? true : false);
-
 }
 
 // isAssociated
@@ -1184,16 +1225,13 @@ boolean WiFlySerial::isTCPConnected() {
 // None. 
 // Returns true on success, false on failure.
 // 
-boolean WiFlySerial::isAssociated() {
-
-    if ( (fStatus & 0x8000) == 0 ) {
-
+boolean 
+WiFlySerial::isAssociated() {
+    if ((fStatus & 0x8000) == 0) {
         getDeviceStatus();
     }
 
-
-    return ( (fStatus & 0x10) > 0 ? true : false);
-
+    return ((fStatus & 0x10) > 0 ? true : false);
 }
 
 // isAuthenticated
@@ -1206,16 +1244,13 @@ boolean WiFlySerial::isAssociated() {
 // Parameters
 // None. 
 // 
-boolean WiFlySerial::isAuthenticated() {
-
-    if ( (fStatus & 0x8000) == 0 ) {
-
+boolean 
+WiFlySerial::isAuthenticated() {
+    if ((fStatus & 0x8000) == 0) {
         getDeviceStatus();
     }
 
-
-    return ( (fStatus & 0x20) > 0 ? true : false);
-
+    return ((fStatus & 0x20) > 0 ? true : false);
 }
 
 // isDNSfound
@@ -1228,16 +1263,13 @@ boolean WiFlySerial::isAuthenticated() {
 // Parameters
 // None. 
 // 
-boolean WiFlySerial::isDNSfound() {
-
-    if ( (fStatus & 0x8000) == 0 ) {
-
+boolean 
+WiFlySerial::isDNSfound() {
+    if ((fStatus & 0x8000) == 0) {
         getDeviceStatus();
     }
 
-
-    return ( (fStatus & 0x40) > 0 ? true : false);
-
+    return ((fStatus & 0x40) > 0 ? true : false);
 }
 
 // isDNScontacted
@@ -1250,14 +1282,13 @@ boolean WiFlySerial::isDNSfound() {
 // Parameters
 // None. 
 // 
-boolean WiFlySerial::isDNScontacted() {
-    if ( (fStatus & 0x8000) == 0 ) {
-
+boolean 
+WiFlySerial::isDNScontacted() {
+    if ((fStatus & 0x8000) == 0) {
         getDeviceStatus();
     }
 
-    return ( (fStatus & 0x80) > 0 ? true : false);
-
+    return ((fStatus & 0x80) > 0 ? true : false);
 }
 
 // getChannel
@@ -1271,16 +1302,13 @@ boolean WiFlySerial::isDNScontacted() {
 // None. 
 // Returns true on success, false on failure.
 // 
-int WiFlySerial::getChannel() {
-
-    if ( (fStatus & 0x8000) == 0 ) {
-
+int 
+WiFlySerial::getChannel() {
+    if ((fStatus & 0x8000) == 0) {
         getDeviceStatus();
     }
 
-
-    return ( (fStatus >> 8 ) - 0x80);
-
+    return ((fStatus >> 8) - 0x80);
 }
 
 
@@ -1291,10 +1319,9 @@ int WiFlySerial::getChannel() {
 // Parameters
 // None. 
 // 
-boolean WiFlySerial::isInCommandMode() {
-
+boolean 
+WiFlySerial::isInCommandMode() {
     return  bWiFlyInCommandMode;
-
 }
 
 
@@ -1306,10 +1333,9 @@ boolean WiFlySerial::isInCommandMode() {
 // Parameters
 // None. 
 // 
-boolean WiFlySerial::isConnectionOpen() {
-
+boolean 
+WiFlySerial::isConnectionOpen() {
     return  bWiFlyConnectionOpen;
-
 }
 
 
@@ -1325,7 +1351,9 @@ boolean WiFlySerial::isConnectionOpen() {
 // idxStop        StringID to extract UNTIL
 //
 // Returns:       pointer to destination buffer
-char* WiFlySerial::ExtractDetailIdx(const int idxCommand, char* pDetail, int buflen, const int idxSearch, const int idxStop) {
+char* 
+WiFlySerial::ExtractDetailIdx(const int idxCommand, char* pDetail, int buflen, 
+        const int idxSearch, const int idxStop) {
     char bufCmd[COMMAND_BUFFER_SIZE];
     char bufSearch[INDICATOR_BUFFER_SIZE];
     char bufStop[INDICATOR_BUFFER_SIZE];
@@ -1334,27 +1362,8 @@ char* WiFlySerial::ExtractDetailIdx(const int idxCommand, char* pDetail, int buf
     GetBuffer_P(idxSearch, bufSearch, INDICATOR_BUFFER_SIZE);
     GetBuffer_P(idxStop, bufStop, INDICATOR_BUFFER_SIZE);
 
-    return ExtractDetail( bufCmd, pDetail, buflen, bufSearch, bufStop);
-
+    return ExtractDetail(bufCmd, pDetail, buflen, bufSearch, bufStop);
 }
-
-// ExtractDetail
-// Returns substring from a response.
-//
-// Parameters: 
-// idxCommand     StringID of command
-// pDetail        pointer to destination buffer
-// buflen         length of destination buffer
-// pFrom          String to extract AFTER
-// pTo            String to extract UNTIL
-//
-// Returns:       pointer to destination buffer
-//char* WiFlySerial::ExtractDetail(const int idxCommand, char* pDetail, int buflen, const char* pFrom, const char* pTo) {
-//  char bufCmd[COMMAND_BUFFER_SIZE];
-//  GetBuffer_P(idxCommand, bufCmd, COMMAND_BUFFER_SIZE);
-//  return ExtractDetail( bufCmd, pDetail, buflen, pFrom, pTo);
-//    
-//}
 
 // ExtractDetail
 // Returns substring from a response.
@@ -1367,26 +1376,26 @@ char* WiFlySerial::ExtractDetailIdx(const int idxCommand, char* pDetail, int buf
 // pTo            String to extract UNTIL
 //
 // Returns:       pointer to destination buffer
-char* WiFlySerial::ExtractDetail(char* pCommand, char* pDetail, int buflen, const char* pFrom, const char* pTo) {
+char* 
+WiFlySerial::ExtractDetail(char* pCommand, char* pDetail, int buflen, 
+        const char* pFrom, const char* pTo) {
     char* pEndToken = NULL;
 
     //send command and ignore results up to after pFrom
-    SendCommand(pCommand,  
-            (char*) pFrom,
-            pDetail,
-            buflen,
-            false,  DEFAULT_WAIT_TIME, false  );
+    SendCommand(pCommand,  (char*)pFrom, pDetail, buflen, 
+            false, DEFAULT_WAIT_TIME, false);
+
     // then collect results up to after pTo.
-    ScanForPattern(pDetail, buflen, pTo, true,  DEFAULT_WAIT_TIME  );                           
+    ScanForPattern(pDetail, buflen, pTo, true,  DEFAULT_WAIT_TIME);
 
     // trim result to not include end token.
-
-    if ( (pEndToken = strstr(pDetail, pTo) ) != NULL) {
+    if ((pEndToken = strstr(pDetail, pTo)) != NULL) {
         *pEndToken = '\0';
     }
 
     // clear buffer of remaining characters
-    ScanForPattern(strchr(pDetail,'\0')+1, buflen - strlen(pDetail) -1 , "\0\0", false,  DEFAULT_WAIT_TIME  );                           
+    ScanForPattern(strchr(pDetail, '\0') + 1, buflen - strlen(pDetail) -1, 
+            "\0\0", false, DEFAULT_WAIT_TIME);
 
     return pDetail;
 }
@@ -1399,8 +1408,9 @@ char* WiFlySerial::ExtractDetail(char* pCommand, char* pDetail, int buflen, cons
 // buflen         length of destination buffer
 // Returns:  pointer to supplied buffer with library version; empty string on failure.
 // 
-char* WiFlySerial::getLibraryVersion(char* pbuf, int buflen) {
-    return GetBuffer_P( STI_WIFLYDEVICE_LIBRARY_VERSION ,pbuf, buflen) ;
+char* 
+WiFlySerial::getLibraryVersion(char* pbuf, int buflen) {
+    return GetBuffer_P(STI_WIFLYDEVICE_LIBRARY_VERSION, pbuf, buflen);
 }
 
 
@@ -1409,15 +1419,17 @@ char* WiFlySerial::getLibraryVersion(char* pbuf, int buflen) {
 //
 // Parameters: None
 // Returns:  IP netmask, or empty string on failure.
-boolean WiFlySerial::isifUp() {
+boolean 
+WiFlySerial::isifUp() {
     boolean bReturn = false;
     char buf[COMMAND_BUFFER_SIZE];
 
-    ExtractDetailIdx( STI_WIFLYDEVICE_GET_IP_DETAILS, buf, COMMAND_BUFFER_SIZE, STI_WIFLYDEVICE_GET_IP_UP_IND, STI_WIFLYDEVICE_RETURN ) ;
-    bReturn = ( strcmp(buf,"UP" ) == 0 ? true : false ) ;
+    ExtractDetailIdx(STI_WIFLYDEVICE_GET_IP_DETAILS, buf, COMMAND_BUFFER_SIZE, 
+            STI_WIFLYDEVICE_GET_IP_UP_IND, STI_WIFLYDEVICE_RETURN);
+
+    bReturn = (strcmp(buf,"UP") == 0 ? true : false);
 
     return bReturn;
-
 }
 
 
@@ -1433,24 +1445,26 @@ boolean WiFlySerial::isifUp() {
 // chTerminator     character to terminate desired line.
 
 // Returns:  pointer to within provided buffer, with result or empty string on failure.
-char* WiFlySerial::ExtractLineFromBuffer(const int idString,  char* pBuffer, const int bufsize, const char* pStartPattern, const char* pTerminator) {
+char* 
+WiFlySerial::ExtractLineFromBuffer(const int idString, char* pBuffer, 
+        const int bufsize, const char* pStartPattern, const char* pTerminator) {
     char* pStart;
     char* pTerm;
     boolean bOk = false;
     char szCommand[SMALL_COMMAND_BUFFER_SIZE];
     char* pResponse = pBuffer;
 
-    if ( !SendInquiry( GetBuffer_P(idString, szCommand, SMALL_COMMAND_BUFFER_SIZE) , pBuffer, bufsize) ) {
+    if (! SendInquiry(GetBuffer_P(idString, szCommand, SMALL_COMMAND_BUFFER_SIZE), pBuffer, bufsize)) {
         bOk = false;
     } else {
         pStart= strstr(pBuffer, pStartPattern);
-        if (pStart != NULL ) {
+        if (pStart != NULL) {
             // Move pointer past the start pattern
             pStart += strlen(pStartPattern);
             pResponse = pStart;
         }
-        pTerm = strstr( pStart, pTerminator);
-        if (pTerm == NULL ) {
+        pTerm = strstr(pStart, pTerminator);
+        if (pTerm == NULL) {
             bOk=false;
         } else {
             *(pTerm) = '\0';
@@ -1472,63 +1486,60 @@ char* WiFlySerial::ExtractLineFromBuffer(const int idString,  char* pBuffer, con
 // Parameters: 
 //
 // Returns true on command success, false on failure.
-boolean WiFlySerial::leave() {
-
+boolean 
+WiFlySerial::leave() {
     boolean bSendLeave = false;
     char szCmd[COMMAND_BUFFER_SIZE];
     char szReply[INDICATOR_BUFFER_SIZE];
 
-    bSendLeave = SendCommand(GetBuffer_P(STI_WIFLYDEVICE_LEAVE, szCmd, COMMAND_BUFFER_SIZE),  
+    bSendLeave = SendCommand(GetBuffer_P(STI_WIFLYDEVICE_LEAVE, szCmd, COMMAND_BUFFER_SIZE),
             GetBuffer_P(STI_WIFLYDEVICE_DEAUTH, szReply, INDICATOR_BUFFER_SIZE),
             szCmd,  
             COMMAND_BUFFER_SIZE, 
-            false );
+            false);
 
     return bSendLeave;
 
 }
 
-boolean WiFlySerial::setSSID( const char* pSSID){
-
-    return issueSetting( STI_WIFLYDEVICE_SET_SSID, pSSID );
-
+boolean 
+WiFlySerial::setSSID(const char* pSSID) {
+    return issueSetting(STI_WIFLYDEVICE_SET_SSID, pSSID);
 }
 
 
-boolean WiFlySerial::setPassphrase( const char* pPassphrase) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_PASSPHRASE, pPassphrase );
-
+boolean 
+WiFlySerial::setPassphrase(const char* pPassphrase) {
+    return issueSetting(STI_WIFLYDEVICE_SET_PASSPHRASE, pPassphrase);
 }
 
 
 // Sets NTP server address
-boolean WiFlySerial::setNTP(const char* pNTP) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_NTP, pNTP );
-
+boolean 
+WiFlySerial::setNTP(const char* pNTP) {
+    return issueSetting(STI_WIFLYDEVICE_SET_NTP, pNTP);
 }
 
 // Sets frequency for NTP updates
-boolean WiFlySerial::setNTP_Update_Frequency(const char* pNTP_Update) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_NTP_ENABLE, pNTP_Update );
+boolean 
+WiFlySerial::setNTP_Update_Frequency(const char* pNTP_Update) {
+    return issueSetting(STI_WIFLYDEVICE_SET_NTP_ENABLE, pNTP_Update);
 }
 
 // sets offset from UTC.
 // Parameters:
-// fltUTC_Offset_Hours  Number of hours from UTC  (e.g. PST = -8 )
+// fltUTC_Offset_Hours  Number of hours from UTC  (e.g. PST = -8)
 // Setting is used during setTime().
 // returns true always.
-boolean WiFlySerial::setNTP_UTC_Offset(float fltUTC_Offset_hours) {
+boolean 
+WiFlySerial::setNTP_UTC_Offset(float fltUTC_Offset_hours) {
     lUTC_Offset_seconds = (long) (fltUTC_Offset_hours * 60 * 60);
     return true;
 }
 // Sets WiFly DNS name
-boolean WiFlySerial::setDeviceID( const char* pDeviceID) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_DEVICEID, pDeviceID );
-
+boolean 
+WiFlySerial::setDeviceID(const char* pDeviceID) {
+    return issueSetting(STI_WIFLYDEVICE_SET_DEVICEID, pDeviceID);
 }
 
 // issueSetting
@@ -1539,122 +1550,122 @@ boolean WiFlySerial::setDeviceID( const char* pDeviceID) {
 //               Command and parameter must be less than COMMAND_BUFFER_SIZE
 //
 // Returns - true on Command success, false on fail.
-boolean WiFlySerial::issueSetting( int idxCommand, const char* pParam) {
-
+boolean 
+WiFlySerial::issueSetting(int idxCommand, const char* pParam) {
     char szReply[INDICATOR_BUFFER_SIZE];
-    //  char szIndicator[INDICATOR_BUFFER_SIZE];
     char szBuffer[COMMAND_BUFFER_SIZE];
 
-    GetBuffer_P(idxCommand,szBuffer, COMMAND_BUFFER_SIZE );
-    strncat( szBuffer, pParam, COMMAND_BUFFER_SIZE - strlen(szBuffer) );
+    GetBuffer_P(idxCommand,szBuffer, COMMAND_BUFFER_SIZE);
+    strncat(szBuffer, pParam, COMMAND_BUFFER_SIZE - strlen(szBuffer));
 
-    return SendCommand( szBuffer, WiFlyFixedPrompts[WIFLY_MSG_AOK], szReply,  INDICATOR_BUFFER_SIZE, true );
+    return SendCommand(szBuffer, WiFlyFixedPrompts[WIFLY_MSG_AOK], szReply,
+            INDICATOR_BUFFER_SIZE, true);
 }
 
 // SetUseDCHP
 // Sets DHCP to requested mode 
 
-boolean WiFlySerial::setDHCPMode(const int iDHCPMode) {
+boolean 
+WiFlySerial::setDHCPMode(const int iDHCPMode) {
     char bufMode[10];
 
-    itoa( iDHCPMode, bufMode, 10);
-
-    return issueSetting( STI_WIFLYDEVICE_SET_DHCP, bufMode );
+    itoa(iDHCPMode, bufMode, 10);
+    return issueSetting(STI_WIFLYDEVICE_SET_DHCP, bufMode);
 }
 
 // SetIP
 // Sets static IP address
 // Parameters:
 // pIP      null-terminated character string of the IP address e.g. '192.168.1.3'
-boolean WiFlySerial::setIP( const char* pIP) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_IP, pIP );
+boolean 
+WiFlySerial::setIP(const char* pIP) {
+    return issueSetting(STI_WIFLYDEVICE_SET_IP, pIP);
 }
 
 // SetNetMask
 // Sets static IP netmask
 // Parameters:
 // pNM      null-terminated character string of the netmask e.g. '255.255.255.0'
-boolean WiFlySerial::setNetMask( const char* pNM) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_NETMASK, pNM );
+boolean 
+WiFlySerial::setNetMask(const char* pNM) {
+    return issueSetting(STI_WIFLYDEVICE_SET_NETMASK, pNM);
 }
 
 // SetGateway
 // Sets static Gateway address
 // Parameters:
 // pGW      null-terminated character string of the Gateway address e.g. '192.168.1.254'
-boolean WiFlySerial::setGateway( const char* pGW) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_GATEWAY, pGW );
+boolean 
+WiFlySerial::setGateway(const char* pGW) {
+    return issueSetting(STI_WIFLYDEVICE_SET_GATEWAY, pGW);
 }
 
 // SetDNS
 // Sets static DNS address
 // Parameters:
 // pDNS      null-terminated character string of the DNS address e.g. '192.168.1.1'
-boolean WiFlySerial::setDNS( const char* pDNS) {
-
-    return issueSetting( STI_WIFLYDEVICE_SET_DNS, pDNS );
+boolean 
+WiFlySerial::setDNS(const char* pDNS) {
+    return issueSetting(STI_WIFLYDEVICE_SET_DNS, pDNS);
 }
 
 // SetChannel
 // Sets wifi Channel 
 // Parameters:
 // pChannel      null-terminated character string of the channel e.g. '6'
-boolean WiFlySerial::setChannel( const char* pChannel) {
-
-
-    return issueSetting( STI_WIFLYDEVICE_SET_CHANNEL, pChannel );
+boolean 
+WiFlySerial::setChannel(const char* pChannel) {
+    return issueSetting(STI_WIFLYDEVICE_SET_CHANNEL, pChannel);
 }
 
 // SetAuthMode
 // Sets wifi Authentication mode 
 // Parameters:
 // iAuthMode      Authentication mode of type WIFLY_AUTH_XXXX
-boolean WiFlySerial::setAuthMode( int iAuthMode) {
+boolean 
+WiFlySerial::setAuthMode(int iAuthMode) {
     char bufMode[10];
 
-    itoa( iAuthMode, bufMode, 10);
-    return issueSetting( STI_WIFLYDEVICE_SET_WIFI_AUTH, bufMode );
+    itoa(iAuthMode, bufMode, 10);
+    return issueSetting(STI_WIFLYDEVICE_SET_WIFI_AUTH, bufMode);
 }
 
 // SetJoinMode
 // Sets wifi Network Join mode 
 // Parameters:
 // iJoinMode     join mode of type WIFLY_JOIN_XXXXXX
-
-boolean WiFlySerial::setJoinMode( int iJoinMode) {
+boolean 
+WiFlySerial::setJoinMode(int iJoinMode) {
     char bufMode[10];
 
-    itoa( iJoinMode, bufMode, 10);
-    return issueSetting( STI_WIFLYDEVICE_SET_WIFI_JOIN, bufMode );
+    itoa(iJoinMode, bufMode, 10);
+    return issueSetting(STI_WIFLYDEVICE_SET_WIFI_JOIN, bufMode);
 }
 
 // SetLocalPort
 // Sets Local port for listening 
 // Parameters:
 // iLocalPort    Port to listen to.
-
-boolean WiFlySerial::setLocalPort( int iNewLocalPort) {
+boolean 
+WiFlySerial::setLocalPort(int iNewLocalPort) {
     char bufPort[10];
 
-    itoa( iNewLocalPort, bufPort, 10);
+    itoa(iNewLocalPort, bufPort, 10);
     iLocalPort = iNewLocalPort;
-    return issueSetting( STI_WIFLYDEVICE_SET_LOCAL_PORT, bufPort );
+    return issueSetting(STI_WIFLYDEVICE_SET_LOCAL_PORT, bufPort);
 }
 
 // SetRemotePort
 // Sets Remote port for connections 
 // Parameters:
 // iRemotePort    Port to contact on remote server.
-
-boolean WiFlySerial::setRemotePort( int iNewRemotePort) {
+boolean 
+WiFlySerial::setRemotePort(int iNewRemotePort) {
     char bufPort[10];
 
-    itoa( iNewRemotePort, bufPort, 10);
+    itoa(iNewRemotePort, bufPort, 10);
     iRemotePort = iNewRemotePort;
-    return issueSetting( STI_WIFLYDEVICE_SET_REMOTE_PORT, bufPort );
+    return issueSetting(STI_WIFLYDEVICE_SET_REMOTE_PORT, bufPort);
 }
 
 
@@ -1665,14 +1676,15 @@ boolean WiFlySerial::setRemotePort( int iNewRemotePort) {
 // Returns: none
 #define SOFTWARE_REBOOT_RETRY_ATTEMPTS 5
 
-void WiFlySerial::reboot() {
+void 
+WiFlySerial::reboot() {
     char szCommand[SMALL_COMMAND_BUFFER_SIZE];
 
     GetBuffer_P(STI_WIFLYDEVICE_REBOOT, szCommand, SMALL_COMMAND_BUFFER_SIZE);
-    // DebugPrint(szCommand);
 
-    if (!SendCommandSimple( szCommand ,   WiFlyFixedPrompts[WIFLY_MSG_AOK] )) {
-        DebugPrint( GetBuffer_P(STI_WIFLYDEVICE_ERR_START_FAIL, szCommand, SMALL_COMMAND_BUFFER_SIZE));
+    if (!SendCommandSimple(szCommand, WiFlyFixedPrompts[WIFLY_MSG_AOK])) {
+        DebugPrint(GetBuffer_P(STI_WIFLYDEVICE_ERR_START_FAIL, szCommand, 
+                    SMALL_COMMAND_BUFFER_SIZE));
         while (1) {}; // Hang. TODO: Handle differently?
     }
 }
@@ -1682,11 +1694,12 @@ void WiFlySerial::reboot() {
 // Joins a network with previously supplied setSSID and passphrase.
 //
 // returns true on success, false on failure
-boolean WiFlySerial::join() {
-
+boolean 
+WiFlySerial::join() {
     char szSSID[COMMAND_BUFFER_SIZE];
-    getSSID( szSSID, COMMAND_BUFFER_SIZE );
-    return join( szSSID );    
+
+    getSSID(szSSID, COMMAND_BUFFER_SIZE);
+    return join(szSSID);    
 }
 
 // join
@@ -1695,18 +1708,18 @@ boolean WiFlySerial::join() {
 //
 // returns true on success, false on failure.
 // Todo: support spaces in passphrase.
-boolean WiFlySerial::join(char* pSSID) {
-
+boolean 
+WiFlySerial::join(char* pSSID) {
     boolean bJoined = false;
     char szCmd[COMMAND_BUFFER_SIZE];
-    setSSID(pSSID);
-    GetBuffer_P(STI_WIFLYDEVICE_INDEX_JOIN, szCmd, COMMAND_BUFFER_SIZE);
-    strncat( szCmd, pSSID, COMMAND_BUFFER_SIZE - strlen(szCmd) );
-
     char bufIndicator[INDICATOR_BUFFER_SIZE];
     char bufResponse [RESPONSE_BUFFER_SIZE];
 
-    bJoined = SendCommand( szCmd,
+    setSSID(pSSID);
+    GetBuffer_P(STI_WIFLYDEVICE_INDEX_JOIN, szCmd, COMMAND_BUFFER_SIZE);
+    strncat(szCmd, pSSID, COMMAND_BUFFER_SIZE - strlen(szCmd));
+
+    bJoined = SendCommand(szCmd,
             GetBuffer_P(STI_WIFLYDEVICE_INDEX_ASSOCIATED, bufIndicator, INDICATOR_BUFFER_SIZE),
             bufResponse, 
             RESPONSE_BUFFER_SIZE, 
@@ -1714,23 +1727,27 @@ boolean WiFlySerial::join(char* pSSID) {
             JOIN_WAIT_TIME, false, false);
 
     return bJoined;
-
 }
 
 
 // GetBuffer_P
 // Returns pointer to a supplied Buffer, from PROGMEM based on StringIndex provided.
 // based on example from http://arduino.cc/en/Reference/PROGMEM
-char* WiFlySerial::GetBuffer_P(const int StringIndex, char* pBuffer, int bufSize) {
+char* 
+WiFlySerial::GetBuffer_P(const int StringIndex, char* pBuffer, int bufSize) {
     memset(pBuffer, '\0', bufSize);
-    strncpy_P(pBuffer, (char *)PGM_READ_WORD(&(WiFlyDevice_string_table[StringIndex])), bufSize);
+    strncpy_P(pBuffer, (char *)PGM_READ_WORD(
+                &(WiFlyDevice_string_table[StringIndex])), bufSize);
     return pBuffer; 
 }
 
-int WiFlySerial::peek() {
+int 
+WiFlySerial::peek() {
     return uart.peek();
 }
-size_t WiFlySerial::write(uint8_t byte) {
+
+size_t 
+WiFlySerial::write(uint8_t byte) {
     return uart.write(byte);
 }
 
@@ -1739,15 +1756,15 @@ size_t WiFlySerial::write(uint8_t byte) {
 // watches for WiFly in-stream control messages e.g. '*CLOS*'.
 // WiFly note: externally-closed connections leave WiFly in data mode.
 
-int WiFlySerial::read() {
-
+int 
+WiFlySerial::read() {
     int iIn = uart.read();
 
-    if (iIn == *pControl ) {
-        if ( *(++pControl) == '\0') {
+    if (iIn == *pControl) {
+        if (*(++pControl) == '\0') {
             bWiFlyConnectionOpen = false;
 
-            // DebugPrint("***Caught Close in read()***" );
+            // DebugPrint("***Caught Close in read()***");
             pControl = WiFlyFixedPrompts[WIFLY_MSG_CLOSE];
         }
     } else {
@@ -1756,38 +1773,44 @@ int WiFlySerial::read() {
     return iIn;
 }
 
-int WiFlySerial::available() {
+int 
+WiFlySerial::available() {
     return uart.available();
 }
-void WiFlySerial::flush() {
+
+void 
+WiFlySerial::flush() {
     uart.flush();
 }
-
-//using Print::write;
-
 
 
 // setDebugChannel
 // Conduit for debug output
 // must not be a NewSoftSerial instance as incoming interrupts conflicts with outgoing data.
-void WiFlySerial::setDebugChannel( Print* pChannel) {
+void 
+WiFlySerial::setDebugChannel(Print* pChannel) {
     pDebugChannel = pChannel; 
 }
-void WiFlySerial::clearDebugChannel() {
+
+void 
+WiFlySerial::clearDebugChannel() {
     pDebugChannel = NULL; 
 }
 
-void WiFlySerial::DebugPrint( const char* pMessage) {
-    if ( pDebugChannel )
+void 
+WiFlySerial::DebugPrint(const char* pMessage) {
+    if (pDebugChannel)
         *pDebugChannel << (char*) pMessage;
 }
-void WiFlySerial::DebugPrint( const int iNumber) {
-    if ( pDebugChannel )
+
+void 
+WiFlySerial::DebugPrint(const int iNumber) {
+    if (pDebugChannel)
         *pDebugChannel << iNumber;
 }
-void WiFlySerial::DebugPrint( const char ch) {
-    if ( pDebugChannel )
+
+void 
+WiFlySerial::DebugPrint(const char ch) {
+    if (pDebugChannel)
         *pDebugChannel << (ch);
 }
-
-

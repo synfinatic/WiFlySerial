@@ -8,8 +8,9 @@
    4-wires needed: Power, Gnd, Rx, Tx
 
    Provides moderately-generic WiFi device interface.
-   Compatible with Arduino 1.0 and Teensy
-   Version 1.00
+   Compatible with Arduino 1.05 and Teensy
+
+   Version 1.10
 
    - WiFlyGSX is a relatively intelligent peer.
    - WiFlyGSX may have awoken in a valid configured state while Arduino asleep; 
@@ -26,8 +27,6 @@
    Open a TCP/UDP connection to a peer
    send / receive data
    close connection
-
-   SoftwareSerial is exposed as serial i/o if necessary
 
 Credits:
 WiFlySerial      Tom Waldock http://sourceforge.net/projects/arduinowifly/
